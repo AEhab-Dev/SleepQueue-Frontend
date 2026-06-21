@@ -1,4 +1,3 @@
-import { SignUp } from '@clerk/nextjs'
 
 export default function SignUpPage() {
   return (
@@ -35,7 +34,6 @@ export default function SignUpPage() {
             Create your account to start optimizing sleep
           </p>
         </div>
-        <SignUp />
       </div>
     </div>
   )

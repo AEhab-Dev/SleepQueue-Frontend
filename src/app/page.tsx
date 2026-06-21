@@ -44,12 +44,12 @@ function InfoTooltip({ text }: { text: string }) {
             }}
           >
             <div style={{
-              position: 'absolute', bottom: -5, left: '50%', transform: 'translateX(-50%)',
-              width: 8, height: 8, background: 'rgba(8,10,18,0.98)',
-              border: '1px solid rgba(99,179,237,0.25)',
-              borderTop: 'none', borderLeft: 'none',
-              transform: 'translateX(-50%) rotate(45deg)',
-            }} />
+  position: 'absolute', bottom: -5, left: '50%',
+  width: 8, height: 8, background: 'rgba(8,10,18,0.98)',
+  border: '1px solid rgba(99,179,237,0.25)',
+  borderTop: 'none', borderLeft: 'none',
+  transform: 'translateX(-50%) rotate(45deg)',
+}} />
             {text}
           </motion.div>
         )}
@@ -86,9 +86,9 @@ const isLoaded = true
   const [confirmClear, setConfirmClear] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
-    if (user?.id) setHistory(getHistory(user.id))
-  }, [user?.id])
+  setMounted(true)
+  setHistory(getHistory())
+}, [])
 
   if (!isLoaded || !mounted) {
     return (
@@ -170,17 +170,15 @@ const isLoaded = true
   ]
 
   const handleClearHistory = () => {
-    if (!confirmClear) {
-      setConfirmClear(true)
-      setTimeout(() => setConfirmClear(false), 3000)
-      return
-    }
-    if (user?.id) {
-      clearHistory(user.id)
-      setHistory([])
-      setConfirmClear(false)
-    }
+  if (!confirmClear) {
+    setConfirmClear(true)
+    setTimeout(() => setConfirmClear(false), 3000)
+    return
   }
+  clearHistory()
+  setHistory([])
+  setConfirmClear(false)
+}
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>

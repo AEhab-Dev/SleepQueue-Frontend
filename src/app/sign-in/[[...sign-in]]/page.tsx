@@ -1,5 +1,4 @@
 //frontend/src/app/dashboard/page.tsx
-import { SignIn } from '@clerk/nextjs'
 
 export default function SignInPage() {
   return (
@@ -38,7 +37,6 @@ export default function SignInPage() {
             Sign in to access your sleep data
           </p>
         </div>
-        <SignIn />
       </div>
     </div>
   )
