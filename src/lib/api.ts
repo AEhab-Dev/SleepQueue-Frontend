@@ -65,8 +65,13 @@ export interface SimulationResult {
   metrics: SleepMetrics
 }
 
+// Single source of truth for the backend URL. Falls back to localhost
+// only for local dev — production MUST set NEXT_PUBLIC_API_URL on Vercel.
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ?? 'http://localhost:8000'
+
 export async function runSimulation(input: SmartWatchInput): Promise<SimulationResult> {
-  const response = await fetch('http://localhost:8000/simulate', {
+  const response = await fetch(`${API_BASE_URL}/simulate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(input),
